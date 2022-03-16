@@ -3,7 +3,8 @@ CC =		gcc
 FLAGS =		-Wall -Werror -Wextra -pthread
 RM =		rm -rf
 
-SRC =		philo.c
+SRC =		philo.c \
+			utils.c
 
 OBJECTS =	$(SRC:.c=.o)
 
