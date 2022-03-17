@@ -1,14 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   philo_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igvaz-fe <igvaz-fe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 21:53:28 by igvaz-fe          #+#    #+#             */
-/*   Updated: 2022/03/15 21:54:11 by igvaz-fe         ###   ########.fr       */
+/*   Updated: 2022/03/16 23:02:39 by igvaz-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "philo.h"
 
 int	ft_isdigit(int i)
 {
@@ -47,8 +49,8 @@ int	ft_atoi(const char *str)
 	sign = is_negative(str);
 	if (!str)
 		return (0);
-	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t' || str[i] == '\v'
-		|| str[i] == '\f' || str[i] == '\r')
+	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t'
+		|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
@@ -58,4 +60,26 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (nbr * sign);
+}
+
+long	ft_atol(const char *str)
+{
+	long	value;
+	long	i;
+	long	sign;
+
+	value = 0;
+	i = 0;
+	sign = (is_negative(str));
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'
+		|| str[i] == '\v' || str[i] == '\r' || str[i] == '\f')
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	while (ft_isdigit(str[i]))
+	{
+		value = (value * 10) + (str[i] - '0');
+		i++;
+	}
+	return (value * sign);
 }

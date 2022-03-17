@@ -4,7 +4,8 @@ FLAGS =		-Wall -Werror -Wextra -pthread
 RM =		rm -rf
 
 SRC =		philo.c \
-			utils.c
+			philo_utils.c \
+			time.c
 
 OBJECTS =	$(SRC:.c=.o)
 
