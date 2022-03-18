@@ -3,9 +3,11 @@ CC =		gcc
 FLAGS =		-Wall -Werror -Wextra -pthread
 RM =		rm -rf
 
-SRC =		philo.c \
+SRC =		time.c \
+			philo.c \
+			dinner.c \
 			philo_utils.c \
-			time.c
+			dinner_utils.c
 
 OBJECTS =	$(SRC:.c=.o)
 

@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time.c                                             :+:      :+:    :+:   */
+/*   dinner_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igvaz-fe <igvaz-fe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/16 22:00:01 by igvaz-fe          #+#    #+#             */
-/*   Updated: 2022/03/17 21:59:05 by igvaz-fe         ###   ########.fr       */
+/*   Created: 2022/03/17 21:42:22 by igvaz-fe          #+#    #+#             */
+/*   Updated: 2022/03/17 22:09:19 by igvaz-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long	get_current_time(void)
+void	print_action(t_philo *philo, char *action)
 {
-	struct timeval time;
+	long	current_time;
 
-	gettimeofday(&time, NULL);
-	return (time.tv_sec * 1000 + time.tv_usec / 1000) ;
-}
-
-long	elapsed_time(long start_time)
-{
-	return ((get_current_time() - start_time));
+	current_time = elapsed_time(philo->setup_philo->start_time);
+	pthread_mutex_lock(&philo->setup_philo->print_locker);
+	if (!philo->setup_philo->is_died)
+		printf("%5ld %3d %s\n", current_time, philo->philo_id, action);
+	pthread_mutex_unlock(&philo->setup_philo->print_locker);
 }

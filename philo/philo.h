@@ -6,7 +6,7 @@
 /*   By: igvaz-fe <igvaz-fe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 14:54:55 by igvaz-fe          #+#    #+#             */
-/*   Updated: 2022/03/16 22:56:52 by igvaz-fe         ###   ########.fr       */
+/*   Updated: 2022/03/17 22:46:17 by igvaz-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,34 @@
 
 typedef struct s_setup
 {
+	pthread_mutex_t	*forks;
+	int				is_died;
 	int				n_philos;
+	long			start_time;
 	int				time_to_die;
 	int				time_to_eat;
-	int				time_to_sleep;
 	int				times_to_eat;
-	int				is_died;
-	long			start_time;
-	pthread_mutex_t	*forks;
+	pthread_mutex_t	print_locker;
+	int				time_to_sleep;
 }	t_setup;
 
 typedef struct s_philo
 {
-	int		philo_id;
-	int		n_meals;
-	long	last_meal;
-	int		left_fork;
-	int		right_fork;
-	t_setup	*setup_philo;
+	int			n_meals;
+	int			philo_id;
+	long		last_meal;
+	int			left_fork;
+	int			right_fork;
+	pthread_t	thread;
+	t_setup		*setup_philo;
 }	t_philo;
 
 int		ft_isdigit(int i);
-int		ft_atoi(const char *str);
-long	ft_atol(const char *str);
 long	get_current_time(void);
+long	ft_atol(const char *str);
+int		ft_atoi(const char *str);
+int		start_dinner(t_philo *philo);
+long	elapsed_time(long start_time);
+void	print_action(t_philo *philo, char *action);
 
 #endif

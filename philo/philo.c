@@ -6,7 +6,7 @@
 /*   By: igvaz-fe <igvaz-fe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 14:43:04 by igvaz-fe          #+#    #+#             */
-/*   Updated: 2022/03/16 23:03:51 by igvaz-fe         ###   ########.fr       */
+/*   Updated: 2022/03/17 23:02:57 by igvaz-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_philo	*init_philo(t_setup *setup)
 		philo[i].n_meals = 0;
 		philo[i].left_fork = i;
 		philo[i].right_fork = i + 1;
+		philo[i].setup_philo = setup;
 		pthread_mutex_init(&setup->forks[i], NULL);
 		i++;
 	}
@@ -36,7 +37,6 @@ t_philo	*init_philo(t_setup *setup)
 
 void	init_setup(t_setup *setup, int argc, char *argv[])
 {
-	setup->start_time = get_current_time();
 	setup->n_philos = ft_atoi(argv[1]);
 	setup->time_to_die = ft_atoi(argv[2]);
 	setup->time_to_eat = ft_atoi(argv[3]);
@@ -46,6 +46,7 @@ void	init_setup(t_setup *setup, int argc, char *argv[])
 		setup->times_to_eat = ft_atoi(argv[5]);
 	setup->is_died = 0;
 	setup->forks = malloc(sizeof(pthread_mutex_t) * setup->n_philos);
+	pthread_mutex_init(&setup->print_locker, NULL);
 }
 
 void	validation(int argc, char *argv[])
@@ -87,5 +88,6 @@ int	main(int argc, char *argv[])
 	validation(argc, argv);
 	init_setup(&setup, argc, argv);
 	philo = init_philo(&setup);
+	start_dinner(philo);
 	return (0);
 }
