@@ -6,7 +6,7 @@
 /*   By: igvaz-fe <igvaz-fe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 14:43:04 by igvaz-fe          #+#    #+#             */
-/*   Updated: 2022/03/17 23:02:57 by igvaz-fe         ###   ########.fr       */
+/*   Updated: 2022/03/20 22:36:54 by igvaz-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_philo	*init_philo(t_setup *setup)
 	while (i < setup->n_philos)
 	{
 		philo[i].philo_id = i + 1;
-		philo[i].last_meal = 0;
+		philo[i].last_meal = get_time();
 		philo[i].n_meals = 0;
 		philo[i].left_fork = i;
 		philo[i].right_fork = i + 1;
@@ -89,5 +89,6 @@ int	main(int argc, char *argv[])
 	init_setup(&setup, argc, argv);
 	philo = init_philo(&setup);
 	start_dinner(philo);
+	//TODO: dar free
 	return (0);
 }

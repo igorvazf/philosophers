@@ -6,7 +6,7 @@
 /*   By: igvaz-fe <igvaz-fe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 21:42:22 by igvaz-fe          #+#    #+#             */
-/*   Updated: 2022/03/17 22:09:19 by igvaz-fe         ###   ########.fr       */
+/*   Updated: 2022/03/20 22:20:12 by igvaz-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,50 @@ void	print_action(t_philo *philo, char *action)
 {
 	long	current_time;
 
-	current_time = elapsed_time(philo->setup_philo->start_time);
+	current_time = get_time() - philo->setup_philo->start_time;
 	pthread_mutex_lock(&philo->setup_philo->print_locker);
 	if (!philo->setup_philo->is_died)
 		printf("%5ld %3d %s\n", current_time, philo->philo_id, action);
 	pthread_mutex_unlock(&philo->setup_philo->print_locker);
+}
+
+long	get_time(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+}
+
+void	eating(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->setup_philo->forks[philo->left_fork]);
+	pthread_mutex_lock(&philo->setup_philo->forks[philo->right_fork]);
+	print_action(philo, "has taken a fork");
+	print_action(philo, "has taken a fork");
+	print_action(philo, "is eating");
+	philo->last_meal = get_time();
+	usleep(philo->setup_philo->time_to_eat * 1000);
+	pthread_mutex_unlock(&philo->setup_philo->forks[philo->left_fork]);
+	pthread_mutex_unlock(&philo->setup_philo->forks[philo->right_fork]);
+}
+
+int	check_meals(t_philo *philo)
+{
+	int	i;
+	int	meals;
+
+	i = 0;
+	if (philo->setup_philo->times_to_eat > 0)
+	{
+		while (i < philo->setup_philo->n_philos)
+		{
+			if (philo[i].n_meals == philo->setup_philo->times_to_eat)
+				meals++;
+			i++;
+		}
+		if (meals == philo->setup_philo->n_philos)
+			return (1);
+	}
+	return (0);
 }

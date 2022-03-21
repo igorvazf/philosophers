@@ -6,7 +6,7 @@
 /*   By: igvaz-fe <igvaz-fe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 14:54:55 by igvaz-fe          #+#    #+#             */
-/*   Updated: 2022/03/17 22:46:17 by igvaz-fe         ###   ########.fr       */
+/*   Updated: 2022/03/20 21:56:27 by igvaz-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,12 @@ typedef struct s_philo
 }	t_philo;
 
 int		ft_isdigit(int i);
-long	get_current_time(void);
+void	eating(t_philo *philo);
+long	get_time(void);
 long	ft_atol(const char *str);
 int		ft_atoi(const char *str);
+int		check_meals(t_philo *philo);
 int		start_dinner(t_philo *philo);
-long	elapsed_time(long start_time);
 void	print_action(t_philo *philo, char *action);
 
 #endif

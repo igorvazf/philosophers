@@ -6,7 +6,7 @@
 /*   By: igvaz-fe <igvaz-fe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 21:29:19 by igvaz-fe          #+#    #+#             */
-/*   Updated: 2022/03/17 23:08:50 by igvaz-fe         ###   ########.fr       */
+/*   Updated: 2022/03/20 22:24:15 by igvaz-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	*only_one(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->setup_philo->forks[philo->left_fork]);
-	philo->last_meal = get_current_time();
 	print_action(philo, "has taken a fork");
 	pthread_mutex_unlock(&philo->setup_philo->forks[philo->left_fork]);
 	print_action(philo, "DIED");
@@ -30,25 +29,64 @@ void	*routine(void *ptr)
 	philo = (t_philo *)ptr;
 	if (philo->setup_philo->n_philos == 1)
 		return (only_one(philo));
+	if (philo->philo_id % 2 == 0)
+		usleep(1600);
+	while (philo->setup_philo->is_died != 1)
+	{
+		eating(philo);
+		print_action(philo, "is sleeping");
+		usleep(philo->setup_philo->time_to_sleep * 1000);
+		print_action(philo, "is thinking");
+		philo->n_meals++;
+	}
+	return (NULL);
+}
+
+void	*monitoring(void *ptr)
+{
+	int		i;
+	t_philo	*p;
+
+	p = (t_philo *)ptr;
+	while (!check_meals(p))
+	{
+		i = 0;
+		while (i < p->setup_philo->n_philos)
+		{
+			if (get_time() - p[i].last_meal > p->setup_philo->time_to_die)
+			{
+				print_action(&p[i], "DIED");
+				p->setup_philo->is_died = 1;
+				return (NULL);
+			}
+			i++;
+			if (i == p->setup_philo->n_philos)
+				i = 0;
+			usleep(1600);
+		}
+	}
 	return (NULL);
 }
 
 int	start_dinner(t_philo *philo)
 {
-	int	i;
+	int			i;
+	pthread_t	monitor;
 
 	i = 0;
-	philo->setup_philo->start_time = get_current_time();
+	philo->setup_philo->start_time = get_time();
 	while (i < philo->setup_philo->n_philos)
 	{
 		pthread_create(&philo[i].thread, NULL, &routine, &philo[i]);
 		i++;
 	}
+	pthread_create(&monitor, NULL, &monitoring, philo);
 	i = 0;
 	while (i < philo->setup_philo->n_philos)
 	{
 		pthread_join(philo[i].thread, NULL);
 		i++;
 	}
+	pthread_join(monitor, NULL);
 	return (0);
 }

@@ -3,8 +3,7 @@ CC =		gcc
 FLAGS =		-Wall -Werror -Wextra -pthread
 RM =		rm -rf
 
-SRC =		time.c \
-			philo.c \
+SRC =		philo.c \
 			dinner.c \
 			philo_utils.c \
 			dinner_utils.c
