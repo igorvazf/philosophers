@@ -6,7 +6,7 @@
 /*   By: igvaz-fe <igvaz-fe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 14:43:04 by igvaz-fe          #+#    #+#             */
-/*   Updated: 2022/03/20 22:36:54 by igvaz-fe         ###   ########.fr       */
+/*   Updated: 2022/03/21 21:01:39 by igvaz-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,6 @@ int	main(int argc, char *argv[])
 	init_setup(&setup, argc, argv);
 	philo = init_philo(&setup);
 	start_dinner(philo);
-	//TODO: dar free
+	finish_dinner(philo, &setup);
 	return (0);
 }

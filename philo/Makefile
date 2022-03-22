@@ -6,6 +6,7 @@ RM =		rm -rf
 SRC =		philo.c \
 			dinner.c \
 			philo_utils.c \
+			free_finish.c \
 			dinner_utils.c
 
 OBJECTS =	$(SRC:.c=.o)

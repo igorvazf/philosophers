@@ -6,7 +6,7 @@
 /*   By: igvaz-fe <igvaz-fe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 21:29:19 by igvaz-fe          #+#    #+#             */
-/*   Updated: 2022/03/20 22:24:15 by igvaz-fe         ###   ########.fr       */
+/*   Updated: 2022/03/21 21:09:16 by igvaz-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,19 @@ void	*only_one(t_philo *philo)
 	print_action(philo, "DIED");
 	philo->setup_philo->is_died = 1;
 	return (NULL);
+}
+
+void	eating(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->setup_philo->forks[philo->left_fork]);
+	pthread_mutex_lock(&philo->setup_philo->forks[philo->right_fork]);
+	print_action(philo, "has taken a fork");
+	print_action(philo, "has taken a fork");
+	print_action(philo, "is eating");
+	philo->last_meal = get_time();
+	usleep(philo->setup_philo->time_to_eat * 1000);
+	pthread_mutex_unlock(&philo->setup_philo->forks[philo->left_fork]);
+	pthread_mutex_unlock(&philo->setup_philo->forks[philo->right_fork]);
 }
 
 void	*routine(void *ptr)
