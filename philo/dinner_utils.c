@@ -6,7 +6,7 @@
 /*   By: igvaz-fe <igvaz-fe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 21:42:22 by igvaz-fe          #+#    #+#             */
-/*   Updated: 2022/03/21 21:09:23 by igvaz-fe         ###   ########.fr       */
+/*   Updated: 2022/03/21 21:34:22 by igvaz-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	check_meals(t_philo *philo)
 	int	meals;
 
 	i = 0;
+	meals = 0;
 	if (philo->setup_philo->times_to_eat > 0)
 	{
 		while (i < philo->setup_philo->n_philos)

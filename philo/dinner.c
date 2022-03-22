@@ -6,7 +6,7 @@
 /*   By: igvaz-fe <igvaz-fe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 21:29:19 by igvaz-fe          #+#    #+#             */
-/*   Updated: 2022/03/21 21:09:16 by igvaz-fe         ###   ########.fr       */
+/*   Updated: 2022/03/21 21:31:31 by igvaz-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,8 @@ void	*monitoring(void *ptr)
 				return (NULL);
 			}
 			i++;
-			if (i == p->setup_philo->n_philos)
-				i = 0;
-			usleep(1600);
 		}
+		usleep(1600);
 	}
 	return (NULL);
 }
