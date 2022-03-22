@@ -6,7 +6,7 @@
 /*   By: igvaz-fe <igvaz-fe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 21:42:22 by igvaz-fe          #+#    #+#             */
-/*   Updated: 2022/03/21 23:03:08 by igvaz-fe         ###   ########.fr       */
+/*   Updated: 2022/03/21 23:18:50 by igvaz-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ int	check_meals(t_philo *philo)
 	{
 		while (i < philo->setup_philo->n_philos)
 		{
-			if (philo[i].n_meals == philo->setup_philo->times_to_eat)
+			if (philo[i].n_meals >= philo->setup_philo->times_to_eat)
 				philo->setup_philo->meals++;
 			i++;
 		}
-		if (philo->setup_philo->meals == philo->setup_philo->n_philos)
+		if (philo->setup_philo->meals >= philo->setup_philo->n_philos)
 		{
 			philo->setup_philo->is_died = 1;
 			return (1);

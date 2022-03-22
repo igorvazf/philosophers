@@ -68,13 +68,13 @@ void	*monitoring(void *ptr)
 		{
 			if (get_time() - p[i].last_meal > p->setup_philo->time_to_die)
 			{
-				print_action(&p[i], "DIED");
+				print_action(&p[i], "died");
 				p->setup_philo->is_died = 1;
 				return (NULL);
 			}
 			i++;
 		}
-		usleep(1600);
+		usleep(1000);
 	}
 	return (NULL);
 }
