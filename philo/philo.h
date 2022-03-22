@@ -6,7 +6,7 @@
 /*   By: igvaz-fe <igvaz-fe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 14:54:55 by igvaz-fe          #+#    #+#             */
-/*   Updated: 2022/03/21 22:33:06 by igvaz-fe         ###   ########.fr       */
+/*   Updated: 2022/03/21 22:58:53 by igvaz-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 typedef struct s_setup
 {
+	int				meals;
 	pthread_mutex_t	*forks;
 	int				is_died;
 	int				n_philos;

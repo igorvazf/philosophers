@@ -6,7 +6,7 @@
 /*   By: igvaz-fe <igvaz-fe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 14:43:04 by igvaz-fe          #+#    #+#             */
-/*   Updated: 2022/03/21 21:01:39 by igvaz-fe         ###   ########.fr       */
+/*   Updated: 2022/03/21 23:04:17 by igvaz-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	init_setup(t_setup *setup, int argc, char *argv[])
 	if (argc > 5)
 		setup->times_to_eat = ft_atoi(argv[5]);
 	setup->is_died = 0;
+	setup->meals = 0;
 	setup->forks = malloc(sizeof(pthread_mutex_t) * setup->n_philos);
 	pthread_mutex_init(&setup->print_locker, NULL);
 }
