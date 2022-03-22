@@ -6,7 +6,7 @@
 /*   By: igvaz-fe <igvaz-fe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 21:29:19 by igvaz-fe          #+#    #+#             */
-/*   Updated: 2022/03/21 21:31:31 by igvaz-fe         ###   ########.fr       */
+/*   Updated: 2022/03/21 22:40:25 by igvaz-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	*monitoring(void *ptr)
 	return (NULL);
 }
 
-int	start_dinner(t_philo *philo)
+void	start_dinner(t_philo *philo)
 {
 	int			i;
 	pthread_t	monitor;
@@ -99,5 +99,4 @@ int	start_dinner(t_philo *philo)
 		i++;
 	}
 	pthread_join(monitor, NULL);
-	return (0);
 }
