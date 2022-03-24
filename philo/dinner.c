@@ -6,7 +6,7 @@
 /*   By: igvaz-fe <igvaz-fe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 21:29:19 by igvaz-fe          #+#    #+#             */
-/*   Updated: 2022/03/21 22:40:25 by igvaz-fe         ###   ########.fr       */
+/*   Updated: 2022/03/24 18:57:39 by igvaz-fe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*only_one(t_philo *philo)
 	pthread_mutex_lock(&philo->setup_philo->forks[philo->left_fork]);
 	print_action(philo, "has taken a fork");
 	pthread_mutex_unlock(&philo->setup_philo->forks[philo->left_fork]);
-	print_action(philo, "DIED");
+	print_action(philo, "died");
 	philo->setup_philo->is_died = 1;
 	return (NULL);
 }
