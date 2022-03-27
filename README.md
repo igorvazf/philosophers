@@ -18,6 +18,7 @@ Rode o executável *philo*, passando como argumentos:
 * time_to_eat (in milliseconds): O tempo que leva para um filósofo comer. Durante esse tempo, ele precisa segurar dois garfos;
 * time_to_sleep (in milliseconds): O tempo que um filósofo passará dormindo;
 * number_of_times_each_philosopher_must_eat (argumento opcional): Se todos os filósofos comerem pelo menos *number_of_times_each_philosopher_must_eat* vezes a simulação para. Se não for especificado, a simulação para quando um filósofo morre.
+
 Exemplos:
 ```
 ./philo 4 300 100 100
